@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div id="body" xmlns:jsp="http://java.sun.com/JSP/Page"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core"
+	 xmlns:joda="http://www.joda.org/joda/time/tags"
+	 xmlns:spring="http://www.springframework.org/tags"
+	 xmlns:form="http://www.springframework.org/tags/form"
+	 xmlns:sec="http://www.springframework.org/security/tags" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<spring:url var="showRestaurant" value="/restaurants/${restaurant.id}" />
+	
+	<div class="row col-lg-8 col-md-8">
+	<h1>PLS</h1>
+	</div>
+	
+	<div class="row col-lg-4 col-md-4">
+	 <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Itemnaam</th>
+        <th>Itemprijs</th>
+      </tr>
+    </thead>
+    <tbody> 
+    <c:if test="${not empty order.orderItems}">
+	<c:forEach items="${order.orderItems}" var="orderItem">
+	<tr>
+	<td class="capitalise">${orderItem.id}</td>
+	<td>${labelCurrency} ${orderItem.price}</td>
+	</tr>
+	</c:forEach>
+	</c:if>    
+    </tbody>
+  </table>
+
+	</div>
+</div>
