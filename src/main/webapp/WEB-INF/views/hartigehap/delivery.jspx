@@ -7,10 +7,63 @@
 	 xmlns:sec="http://www.springframework.org/security/tags" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
+	<spring:message code="label_currency" var="labelCurrency" />
 	<spring:url var="showRestaurant" value="/restaurants/${restaurant.id}" />
 	
 	<div class="row col-lg-8 col-md-8">
-	<h1>PLS</h1>
+	<h1>Voer je adresgegevens in</h1>
+	<spring:url var="submitOrderUrl" value="/restaurants/{restaurantName}/delivery" />
+	<form:form name="submitOrderForm" action="${submitOrderUrl}" modelAttribute="deliveryForm" method="post">
+	
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >Adres</span>
+						  <form:input type="text" path="street" />
+	</div>
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >huisnummer</span>
+						  <form:input type="number" path="houseNmbr" />
+	</div>
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >Postcode</span>
+						  <form:input type="text" path="zipCode" />
+	</div>
+	
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >Stad</span>
+						  <form:input type="text" path="City" />
+	</div>
+	
+	
+	<h2>Hoe ben je te bereiken?</h2>
+	
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >Naam</span>
+						  <form:input type="text" path="name" />
+	</div>
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >Tel</span>
+						  <form:input type="tel" path="phoneNmbr" />
+	</div>
+	
+	
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >Email</span>
+						  <form:input type="email" path="email" />
+	</div>
+	
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >Gewenste Bezorgtijd</span>
+						  <form:input type="text" path="deliveryTime" />
+	</div>
+	
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >opmerkingen voor restaurant?</span>
+						  <form:textarea type="text" path="comments" />
+	</div>
+	
+	<button type="submit" class="btn btn-default">Bevestig bestelling en betaal</button>
+	</form:form>
+	
 	</div>
 	
 	<div class="row col-lg-4 col-md-4">
@@ -29,6 +82,10 @@
 	<td>${labelCurrency} ${orderItem.menuItem.price}</td>
 	</tr>
 	</c:forEach>
+	<tr>
+	<td><b>Totaal:</b></td>
+	<td></td>
+	</tr>
 	</c:if>    
     </tbody>
   </table>

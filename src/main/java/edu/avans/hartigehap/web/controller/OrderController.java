@@ -89,9 +89,9 @@ public class OrderController {
     }
     //PUT voor de verandering van een order
     @RequestMapping(value = "/restaurants/{restaurantName}/order", method = RequestMethod.PUT)
-    public String receiveEvent(@PathVariable("restaurantName") String diningTableId, @RequestParam String event,
-            RedirectAttributes redirectAttributes, Model uiModel, Locale locale) {
-            return submitOrder(diningTableId, redirectAttributes, uiModel, locale);
+    public String prepareBill(@PathVariable("restaurantName") String restaurantName,Model uiModel,@CookieValue("HartigeHapOrderID") String orderID) {
+    	setOrderModel(restaurantName, uiModel, orderID);
+    	return "redirect:/restaurants/"+ restaurantName+"/delivery";
 
         }
     

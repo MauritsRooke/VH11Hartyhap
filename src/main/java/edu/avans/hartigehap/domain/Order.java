@@ -5,12 +5,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,30 +25,27 @@ import lombok.ToString;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import edu.avans.hartigehap.domain.States.*;
+
 /**
  * 
  * @author Erco
  */
 @Entity
-@NamedQuery(name = "Order.findSubmittedOrders", query = "SELECT o FROM Order o "
-        + "WHERE o.orderStatus = edu.avans.hartigehap.domain.Order$OrderStatus.SUBMITTED "
-        + "AND o.bill.diningTable.restaurant = :restaurant " + "ORDER BY o.submittedTime")
+
 // to prevent collision with MySql reserved keyword
 @Table(name = "ORDERS")
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 @Getter
 @Setter
-@ToString(callSuper = true, includeFieldNames = true, of = { "orderStatus", "orderItems" })
+@ToString(callSuper = true, includeFieldNames = true, of = { "orderItems" })
 public class Order extends DomainObject {
     private static final long serialVersionUID = 1L;
 
-    public enum OrderStatus {
-        CREATED, SUBMITTED, PLANNED, PREPARED, SERVED
-    }
+   
+    @OneToOne(orphanRemoval=true, cascade=CascadeType.ALL)
+    public OrderState myState;
 
-    @Enumerated(EnumType.ORDINAL)
-    // represented in database as integer
-    private OrderStatus orderStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date submittedTime;
@@ -69,15 +68,18 @@ public class Order extends DomainObject {
 
     private String OnlineID;
     
+
     public Order() {
-        orderStatus = OrderStatus.CREATED;
+        myState = new CreatedState(this);
     }
 
+    
     /* business logic */
 
     @Transient
     public boolean isSubmittedOrSuccessiveState() {
-        return orderStatus != OrderStatus.CREATED;
+    	
+        return myState.getStatusType() != "created";
     }
 
     // transient annotation, because methods starting with are recognized by JPA
@@ -129,51 +131,21 @@ public class Order extends DomainObject {
         if (isEmpty()) {
             throw new StateException("not allowed to submit an empty order");
         }
-
-        // this can only happen by directly invoking HTTP requests, so not via
-        // GUI
-        if (orderStatus != OrderStatus.CREATED) {
-            throw new StateException("not allowed to submit an already submitted order");
-        }
-        submittedTime = new Date();
-        orderStatus = OrderStatus.SUBMITTED;
+        myState.submit();
     }
 
     public void plan() throws StateException {
-
-        // this can only happen by directly invoking HTTP requests, so not via
-        // GUI
-        if (orderStatus != OrderStatus.SUBMITTED) {
-            throw new StateException("not allowed to plan an order that is not in the submitted state");
-        }
-
-        plannedTime = new Date();
-        orderStatus = OrderStatus.PLANNED;
+      myState.plan();
     }
 
     public void prepared() throws StateException {
 
-        // this can only happen by directly invoking HTTP requests, so not via
-        // GUI
-        if (orderStatus != OrderStatus.PLANNED) {
-            throw new StateException(
-                    "not allowed to change order state to prepared, if it is not in the planned state");
-        }
-
-        preparedTime = new Date();
-        orderStatus = OrderStatus.PREPARED;
+    	myState.prepared();
     }
 
     public void served() throws StateException {
 
-        // this can only happen by directly invoking HTTP requests, so not via
-        // GUI
-        if (orderStatus != OrderStatus.PREPARED) {
-            throw new StateException("not allowed to change order state to served, if it is not in the prepared state");
-        }
-
-        servedTime = new Date();
-        orderStatus = OrderStatus.SERVED;
+    	myState.served();
     }
 
     @Transient
@@ -185,5 +157,6 @@ public class Order extends DomainObject {
         }
         return price;
     }
+    
 
 }
