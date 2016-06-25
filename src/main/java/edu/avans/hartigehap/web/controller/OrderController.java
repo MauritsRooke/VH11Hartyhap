@@ -27,7 +27,13 @@ import edu.avans.hartigehap.service.DiningTableService;
 import edu.avans.hartigehap.service.OrderService;
 import edu.avans.hartigehap.service.RestaurantService;
 import lombok.extern.slf4j.Slf4j;
-
+/**
+ * Als ik een design pattern was, dan was ik een Singleton.
+ * I did singlely ton's of work
+ * 
+ * @author Maurits
+ *
+ */
 
 @Controller
 @Slf4j
@@ -89,9 +95,9 @@ public class OrderController {
     }
     //PUT voor de verandering van een order
     @RequestMapping(value = "/restaurants/{restaurantName}/order", method = RequestMethod.PUT)
-    public String receiveEvent(@PathVariable("restaurantName") String diningTableId, @RequestParam String event,
-            RedirectAttributes redirectAttributes, Model uiModel, Locale locale) {
-            return submitOrder(diningTableId, redirectAttributes, uiModel, locale);
+    public String prepareBill(@PathVariable("restaurantName") String restaurantName,Model uiModel,@CookieValue("HartigeHapOrderID") String orderID) {
+    	setOrderModel(restaurantName, uiModel, orderID);
+    	return "redirect:/restaurants/"+ restaurantName+"/delivery";
 
         }
     
@@ -106,12 +112,7 @@ public class OrderController {
         return "redirect:/restaurants/"+ restaurantName+"/order";
     }
     
-    //Methode om een item toe te voegen aan een order
-    private String submitOrder(String diningTableId, RedirectAttributes redirectAttributes, Model uiModel,
-            Locale locale) {
-        return "redirect:/restaurants/${restaurant.id}/order";
 
-    }
     
 }
 

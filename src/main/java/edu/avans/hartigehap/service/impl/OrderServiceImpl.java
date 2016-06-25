@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
         // a repository with a custom method implementation
         // the custom method implementation uses a named query which is
         // invoked using an entityManager
-        List<Order> submittedOrdersList = orderRepository.findSubmittedOrdersForRestaurant(restaurant);
+        List<Order> submittedOrdersList = orderRepository.findBymyStateStatusTypeAndBillDiningTableRestaurant("submitted",restaurant,new Sort(Sort.Direction.ASC, "submittedTime"));
 
         log.info("findSubmittedOrdersForRestaurant using named query");
         ListIterator<Order> it = submittedOrdersList.listIterator();
@@ -53,8 +53,8 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // a query created using a repository method name
-        List<Order> submittedOrdersListAlternative = orderRepository.findByOrderStatusAndBillDiningTableRestaurant(
-                Order.OrderStatus.SUBMITTED, restaurant, new Sort(Sort.Direction.ASC, "submittedTime"));
+        List<Order> submittedOrdersListAlternative = orderRepository.findBymyStateStatusTypeAndBillDiningTableRestaurant(
+                "submitted", restaurant, new Sort(Sort.Direction.ASC, "submittedTime"));
 
         log.info("findSubmittedOrdersForRestaurant using query created using repository method name");
         ListIterator<Order> italt = submittedOrdersListAlternative.listIterator();
@@ -70,15 +70,15 @@ public class OrderServiceImpl implements OrderService {
     @Transactional(readOnly = true)
     public List<Order> findPlannedOrdersForRestaurant(Restaurant restaurant) {
         // a query created using a repository method name
-        return orderRepository.findByOrderStatusAndBillDiningTableRestaurant(
-                Order.OrderStatus.PLANNED, restaurant, new Sort(Sort.Direction.ASC, "plannedTime"));
+        return orderRepository.findBymyStateStatusTypeAndBillDiningTableRestaurant(
+                "planned", restaurant, new Sort(Sort.Direction.ASC, "plannedTime"));
     }
 
     @Transactional(readOnly = true)
     public List<Order> findPreparedOrdersForRestaurant(Restaurant restaurant) {
         // a query created using a repository method name
-        return orderRepository.findByOrderStatusAndBillDiningTableRestaurant(
-                Order.OrderStatus.PREPARED, restaurant, new Sort(Sort.Direction.ASC, "preparedTime"));
+        return orderRepository.findBymyStateStatusTypeAndBillDiningTableRestaurant(
+                "prepared", restaurant, new Sort(Sort.Direction.ASC, "preparedTime"));
     }
     
     public void addOrderItem(String onlineOrderID, String menuItemName) {
@@ -125,4 +125,10 @@ public class OrderServiceImpl implements OrderService {
     public void orderServed(Order order) throws StateException {
         order.served();
     }
+
+	@Override
+	public void submitOrder(Order order) throws StateException {
+		order.submit();
+		
+	}
 }

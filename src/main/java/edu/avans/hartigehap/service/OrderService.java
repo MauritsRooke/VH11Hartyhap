@@ -16,6 +16,7 @@ public interface OrderService {
     void addOrderItem(String onlineOrderID, String menuItemName);
 
     void planOrder(Order order) throws StateException;
+    void submitOrder(Order order) throws StateException;
 
     void orderPrepared(Order order) throws StateException;
 

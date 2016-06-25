@@ -146,7 +146,7 @@ public class Bill extends DomainObject {
             throw new EmptyBillException("not allowed to submit an empty bill");
         }
 
-        if (!currentOrder.isEmpty() && currentOrder.getOrderStatus() == Order.OrderStatus.CREATED) {
+        if (!currentOrder.isEmpty() && currentOrder.getMyState().getStatusType().equals("created")){
             // the currentOrder is not empty, but not yet submitted
             throw new StateException("not allowed to submit an with currentOrder in created state");
         }

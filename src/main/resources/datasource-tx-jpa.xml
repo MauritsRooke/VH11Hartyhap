@@ -35,11 +35,11 @@
 			<props>
 				<!-- prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				 <prop key="hibernate.hbm2ddl.auto">create</prop> 
+				   <prop key="hibernate.hbm2ddl.auto">create</prop> 
 				<prop key="hibernate.max_fetch_depth">3</prop>
 				<prop key="hibernate.jdbc.fetch_size">50</prop>
 				<prop key="hibernate.jdbc.batch_size">10</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 			</props>
 		</property>
 	</bean>
