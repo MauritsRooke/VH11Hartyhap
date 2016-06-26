@@ -29,7 +29,12 @@
 			<div id="message" class="alert alert-info ${message.type}">${message.message}</div>
 		</c:if>
 	</div>
-
+<div><h2>Online bestellen</h2>
+	<ul class="list-group">
+		<spring:url var="order" value="/restaurants/${restaurant.id}/order" />
+		<a href="${order}" class="list-group-item">Bestel nu online</a>
+	</ul>
+	</div>
 	<div class="row">
 		<h2 class="restaurant muted">${labelOrderingSubsystem}</h2>
 	</div>
@@ -48,13 +53,7 @@
 		</div>
 	</div>
 	
-	<div><p>Kies je bestelling</p>
-	<ul class="list-group">
-		<spring:url var="order" value="/restaurants/${restaurant.id}/order" />
-		<a href="${order}" class="list-group-item">"Order"</a>
-	</ul>
-	<button>Bezorging</button>
-	</div>
+	
 
     <sec:authorize access="hasRole('ROLE_EMPLOYEE')">
 		<div class="row">

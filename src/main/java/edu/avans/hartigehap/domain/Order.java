@@ -29,8 +29,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import edu.avans.hartigehap.domain.States.*;
 
 /**
- * 
- * @author Erco
+ * Order object Now has a State pattern to keep track of states
+ * Observer pattern added
+ * @author Maurits
+ *
  */
 @Entity
 

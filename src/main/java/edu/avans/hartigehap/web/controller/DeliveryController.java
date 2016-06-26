@@ -1,5 +1,8 @@
 package edu.avans.hartigehap.web.controller;
-
+/**
+ * Controller for all deliveries
+ * @author Maurits
+ */
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

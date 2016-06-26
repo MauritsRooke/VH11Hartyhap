@@ -1,5 +1,10 @@
 package edu.avans.hartigehap.domain.States;
-
+/**
+ * Created state is the first State an Order will be
+ * Only has working submit to change State
+ * @author Maurits
+ *
+ */
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;

@@ -6,7 +6,10 @@ import javax.persistence.Entity;
 import edu.avans.hartigehap.domain.Order;
 import edu.avans.hartigehap.domain.StateException;
 import lombok.NoArgsConstructor;
-
+/**
+ * Served state is the final State an Order will be
+ * @author Maurits
+ */
 @Entity
 @DiscriminatorValue(ServedState.DISCRIMINATOR)
 @NoArgsConstructor

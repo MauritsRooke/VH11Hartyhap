@@ -1,5 +1,9 @@
 package edu.avans.hartigehap.domain;
-
+/**
+ * Fictional adapter to make a "extern" hotmail interface work on the current interface
+ * @author Maurits
+ *
+ */
 public class HotmailAdapter implements Mail {
 	Hotmail hotmail;
 	public HotmailAdapter(Hotmail hotmail){

@@ -8,15 +8,17 @@ import javax.persistence.Entity;
 import edu.avans.hartigehap.domain.Order;
 import edu.avans.hartigehap.domain.StateException;
 import lombok.NoArgsConstructor;
-
+/**
+ * Submitted state is the second State an Order will be
+ * Only has working plan to change State
+ * @author Maurits
+ */
 @Entity
 @DiscriminatorValue(SubmittedState.DISCRIMINATOR)
 @NoArgsConstructor
 public class SubmittedState extends OrderState {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	public static final String DISCRIMINATOR = "submitted";
 

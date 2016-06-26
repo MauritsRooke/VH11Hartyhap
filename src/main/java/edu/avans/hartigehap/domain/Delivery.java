@@ -1,7 +1,11 @@
 package edu.avans.hartigehap.domain;
 
 
-
+/**
+ * Delivery domain object
+ * @author Maurits
+ *
+ */
 
 
 

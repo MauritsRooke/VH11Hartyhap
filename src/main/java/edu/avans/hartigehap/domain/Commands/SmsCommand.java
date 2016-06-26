@@ -1,5 +1,10 @@
 package edu.avans.hartigehap.domain.Commands;
-
+/**
+ * Sms command to show the command pattern works
+ * Doesnt have a real implementation
+ * @author Maurits
+ *
+ */
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

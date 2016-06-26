@@ -1,6 +1,10 @@
 package edu.avans.hartigehap.domain.Commands;
 
-
+/**
+ * Mailcommand sends data to the notification class to send an email
+ * @author Maurits
+ *
+ */
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

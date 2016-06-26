@@ -1,5 +1,9 @@
 package edu.avans.hartigehap.web.controller;
-
+/**
+ * Edited the Controller to work with online orders
+ * Work around of problem causes errors when the GET method isnt initialized first
+ * @author Maurits
+ */
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;

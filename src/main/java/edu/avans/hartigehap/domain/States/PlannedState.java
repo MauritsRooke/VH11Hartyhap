@@ -8,15 +8,17 @@ import javax.persistence.Entity;
 import edu.avans.hartigehap.domain.Order;
 import edu.avans.hartigehap.domain.StateException;
 import lombok.NoArgsConstructor;
-
+/**
+ * Created state is the third State an Order will be
+ * Only has working prepared to change State
+ * @author Maurits
+ */
 @Entity
 @DiscriminatorValue(PlannedState.DISCRIMINATOR)
 @NoArgsConstructor
 public class PlannedState extends OrderState {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	public static final String DISCRIMINATOR = "planned";
 

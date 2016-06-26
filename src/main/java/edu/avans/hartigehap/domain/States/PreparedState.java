@@ -1,5 +1,9 @@
 package edu.avans.hartigehap.domain.States;
-
+/**
+ * Prepared state is the fourth State an Order will be
+ * Only has working served to change State
+ * @author Maurits
+ */
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
@@ -13,9 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PreparedState extends OrderState {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	public static final String DISCRIMINATOR = "prepared";
 

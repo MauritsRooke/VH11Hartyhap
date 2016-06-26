@@ -31,6 +31,9 @@ import lombok.extern.slf4j.Slf4j;
  * If I were a design pattern, I would be a Singleton.
  * I did singlely, ton's of work
  * 
+ * 
+ * Orders dont have identifiers in the URL, the are found by cookies
+ * 
  * @author Maurits
  *
  */

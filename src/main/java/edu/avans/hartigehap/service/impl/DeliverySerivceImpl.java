@@ -1,4 +1,7 @@
-package edu.avans.hartigehap.service.impl;
+/**
+ * Delivery service implementation only with a save method
+ * @author Maurits
+ */package edu.avans.hartigehap.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

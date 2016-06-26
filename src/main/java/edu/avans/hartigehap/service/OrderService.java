@@ -1,5 +1,8 @@
 package edu.avans.hartigehap.service;
-
+/**
+ * Added some methods
+ * @author Maurits
+ */
 import java.util.List;
 
 import edu.avans.hartigehap.domain.*;

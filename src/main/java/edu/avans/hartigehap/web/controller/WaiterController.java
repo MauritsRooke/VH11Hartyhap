@@ -1,5 +1,9 @@
 package edu.avans.hartigehap.web.controller;
-
+/**
+ * Edited to work with online orders
+ * Same story as KitchenController
+ * @author Maurits
+ */
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;

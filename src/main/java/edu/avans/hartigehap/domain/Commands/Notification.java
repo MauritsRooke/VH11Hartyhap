@@ -1,6 +1,12 @@
 package edu.avans.hartigehap.domain.Commands;
 
-
+/**
+ * Notification class to send messages
+ * In theory it can send facebook, text and email messages
+ * Only email functionality is implemented
+ * @author Maurits
+ *
+ */
 import edu.avans.hartigehap.domain.Gmail;
 import edu.avans.hartigehap.domain.Hotmail;
 import edu.avans.hartigehap.domain.HotmailAdapter;

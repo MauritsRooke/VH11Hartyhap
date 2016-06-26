@@ -1,5 +1,9 @@
 package edu.avans.hartigehap.domain.States;
-
+/**
+ *  Abstract class for the States
+ * @author Maurits
+ *
+ */
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;

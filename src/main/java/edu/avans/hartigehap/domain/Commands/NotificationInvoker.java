@@ -1,5 +1,9 @@
 package edu.avans.hartigehap.domain.Commands;
-
+/**
+ *  Invoker for the command pattern
+ * @author Maurits
+ *
+ */
 import java.util.ArrayList;
 import java.util.List;
 

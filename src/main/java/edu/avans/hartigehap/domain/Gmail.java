@@ -9,7 +9,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+/**
+ * Gmail class responsible for sending mail via google smtp
+ * @author Maurits
+ *
+ */
 public class Gmail implements Mail {
 	final String username = "hartigehaptest";
 	final String password = "HartigeHap";
