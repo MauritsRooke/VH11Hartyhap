@@ -27,10 +27,10 @@ public class WaiterController {
     private BillService billService;
     @Autowired
     private OrderService orderService;
-
+    private Restaurant restaurant;
     @RequestMapping(value = "/restaurants/{restaurantName}/waiter", method = RequestMethod.GET)
     public String showWaiter(@PathVariable("restaurantName") String restaurantName, Model uiModel) {
-
+    	restaurant = restaurantService.findById(restaurantName);
         // warmup stuff
         Collection<Restaurant> restaurants = restaurantService.findAll();
         uiModel.addAttribute("restaurants", restaurants);
@@ -108,7 +108,7 @@ public class WaiterController {
             break;
         }
         
-        return "redirect:/restaurants/" + order.getBill().getDiningTable().getRestaurant().getId() + "/waiter";
+        return "redirect:/restaurants/" + restaurant.getId() + "/waiter";
     }
 
     private void orderHasBeenServed(Order order) {
@@ -136,7 +136,7 @@ public class WaiterController {
             break;
         }
 
-        return "redirect:/restaurants/" + bill.getDiningTable().getRestaurant().getId() + "/waiter";
+        return "redirect:/restaurants/" +restaurant.getId() + "/waiter";
     }
     
     private void billHasBeenPaid(Bill bill) {
@@ -153,8 +153,6 @@ public class WaiterController {
         Order order = orderService.findById(Long.valueOf(orderId));
         Collection<Restaurant> restaurants = restaurantService.findAll();
         uiModel.addAttribute("restaurants", restaurants);
-        Restaurant restaurant = restaurantService
-                .fetchWarmedUp(order.getBill().getDiningTable().getRestaurant().getId());
         uiModel.addAttribute("restaurant", restaurant);
         return order;
     }
@@ -163,7 +161,6 @@ public class WaiterController {
         Bill bill = billService.findById(Long.valueOf(billId));
         Collection<Restaurant> restaurants = restaurantService.findAll();
         uiModel.addAttribute("restaurants", restaurants);
-        Restaurant restaurant = restaurantService.fetchWarmedUp(bill.getDiningTable().getRestaurant().getId());
         uiModel.addAttribute("restaurant", restaurant);
         return bill;
     }

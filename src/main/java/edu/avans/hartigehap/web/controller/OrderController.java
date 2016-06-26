@@ -28,8 +28,8 @@ import edu.avans.hartigehap.service.OrderService;
 import edu.avans.hartigehap.service.RestaurantService;
 import lombok.extern.slf4j.Slf4j;
 /**
- * Als ik een design pattern was, dan was ik een Singleton.
- * I did singlely ton's of work
+ * If I were a design pattern, I would be a Singleton.
+ * I did singlely, ton's of work
  * 
  * @author Maurits
  *
@@ -90,7 +90,7 @@ public class OrderController {
     @RequestMapping(value = { "/restaurants/{restaurantName}/order/menuItems" }, method = RequestMethod.POST)
     public String addMenuItem(@PathVariable("restaurantName") String restaurantName, Model uiModel, @RequestParam String menuItemName,@CookieValue("HartigeHapOrderID") String orderID) {
     	 setOrderModel(restaurantName, uiModel, orderID);
-    	 orderService.addOrderItem(orderID, menuItemName);
+    	 orderService.addOrderItem(orderID, menuItemName,restaurantName);
     	return "redirect:/restaurants/"+ restaurantName+"/order";
     }
     //PUT voor de verandering van een order

@@ -25,10 +25,13 @@ public class KitchenController {
     private RestaurantService restaurantService;
     @Autowired
     private OrderService orderService;
+    
+    private Restaurant restaurant;
 
     @RequestMapping(value = "/restaurants/{restaurantName}/kitchen", method = RequestMethod.GET)
     public String showKitchen(@PathVariable("restaurantName") String restaurantName, Model uiModel) {
-
+    	
+    	restaurant = restaurantService.findById(restaurantName);
         // warmup stuff
         Collection<Restaurant> restaurants = restaurantService.findAll();
         uiModel.addAttribute("restaurants", restaurants);
@@ -49,7 +52,7 @@ public class KitchenController {
 
         // warmup stuff
         Order order = warmupRestaurant(orderId, uiModel);
-        Restaurant resto = order.getBill().getDiningTable().getRestaurant();
+        Restaurant resto = restaurant;
 
 
         List<Order> allSubmittedOrders = orderService.findSubmittedOrdersForRestaurant(resto);
@@ -89,7 +92,7 @@ public class KitchenController {
             break;
         }
         
-        return "redirect:/restaurants/" + order.getBill().getDiningTable().getRestaurant().getId() + "/kitchen";
+        return "redirect:/restaurants/" + restaurant.getId() + "/kitchen";
     }
 
     private void planOrder(Order order) {
@@ -114,8 +117,7 @@ public class KitchenController {
         Order order = orderService.findById(Long.valueOf(orderId));
         Collection<Restaurant> restaurants = restaurantService.findAll();
         uiModel.addAttribute("restaurants", restaurants);
-        Restaurant restaurant = restaurantService
-                .fetchWarmedUp(order.getBill().getDiningTable().getRestaurant().getId());
+       
         uiModel.addAttribute("restaurant", restaurant);
         return order;
     }

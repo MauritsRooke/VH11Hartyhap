@@ -13,7 +13,7 @@ public interface OrderService {
 
     List<Order> findPreparedOrdersForRestaurant(Restaurant restaurant);
     
-    void addOrderItem(String onlineOrderID, String menuItemName);
+    void addOrderItem(String onlineOrderID, String menuItemName,String restaurantName);
 
     void planOrder(Order order) throws StateException;
     void submitOrder(Order order) throws StateException;

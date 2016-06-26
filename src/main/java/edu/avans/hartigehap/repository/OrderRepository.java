@@ -16,7 +16,8 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Long>
    //         Sort sort);
     
     List<Order> findBymyStateStatusTypeAndBillDiningTableRestaurant(String orderStatus, Restaurant restaurant,Sort sort);
-
+    
+    List<Order> findBymyStateStatusType(String orderStatus,Sort sort);
     // compare to:
     // @NamedQuery(
     // name = "Order.findSubmittedOrders",
