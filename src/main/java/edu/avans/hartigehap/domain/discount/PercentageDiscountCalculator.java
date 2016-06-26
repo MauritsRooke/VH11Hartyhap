@@ -6,6 +6,8 @@ import java.util.Collection;
 
 /**
  * @author Yannick, XOXO.
+ * 
+ * Haalt een bepaald percentage van de totaal prijs
  */
 
 public class PercentageDiscountCalculator extends DefaultDiscountCalculator {
@@ -22,8 +24,6 @@ public class PercentageDiscountCalculator extends DefaultDiscountCalculator {
 
     @Override
     public float calculatePrice(Collection<OrderItem> orderList) {
-        //BigDecimal price = super.calculatePrice(orderList);
-        //return price.multiply(new BigDecimal(discountPercentage));
     	float price = super.calculatePrice(orderList) * discountPercentage / 100;
     	return price;
     }

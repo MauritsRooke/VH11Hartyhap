@@ -103,4 +103,34 @@ public class DiscountCalculatorUnitTest {
         assertEquals(10, price, 0.001);
         assertEquals(24, price2, 0.001);
     }
+    
+    @Test
+    public void testSubstractDiscountCalculatorException() {
+
+        try {
+            IDiscountCalculator calculator = new SubstractDiscountCalculator();
+        } catch (IllegalArgumentException e){
+            assertTrue("true", true);
+            return;
+        }
+        assertTrue("false", false);
+    }
+    
+    @Test
+    public void testSubstractDiscountCalculator() {
+        setUp();
+        IDiscountCalculator calculator = new SubstractDiscountCalculator((float)0.50);
+        IDiscountCalculator calculator2 = new SubstractDiscountCalculator((float)1);
+        
+        float price = calculator.calculatePrice(orderItems);
+        float price2 = calculator.calculatePrice(orderItems2);
+        float price3 = calculator2.calculatePrice(orderItems);
+        float price4 = calculator2.calculatePrice(orderItems2);
+        
+        assertEquals(39, price, 0.001);
+        assertEquals(23.5, price2, 0.001);
+        assertEquals(38, price3, 0.001);
+        assertEquals(23, price4, 0.001);
+    }
+
 }

@@ -31,6 +31,7 @@ public class DiscountCalculatorFactory {
 
         switch (dayOfTheWeek) {
             case Calendar.MONDAY:
+            	calculator = new SubstractDiscountCalculator((float)0.50);
             case Calendar.TUESDAY:
             case Calendar.WEDNESDAY:
             	calculator = new PercentageDiscountCalculator(90);
@@ -40,7 +41,7 @@ public class DiscountCalculatorFactory {
             	calculator = new HighestPriceDiscountCalculator();
             	break;
             case Calendar.SATURDAY:
-            	calculator = new PercentageDiscountCalculator(75);
+            	calculator = new PercentageDiscountCalculator(85);
             	break;
             case Calendar.SUNDAY:
                 calculator = new PercentageDiscountCalculator(75);

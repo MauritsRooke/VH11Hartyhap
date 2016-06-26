@@ -12,7 +12,6 @@ public class DefaultDiscountCalculator implements IDiscountCalculator {
 
     @Override
     public float calculatePrice(Collection<OrderItem> orderList) {
-    	
     	float price = 0;
         for (OrderItem item : orderList) {
             price += item.getPrice();
