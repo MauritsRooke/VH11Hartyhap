@@ -94,8 +94,8 @@ public class Bill extends DomainObject {
      * @return
      */
     @Transient
-    public int getPriceAllOrders() {
-        int price = 0;
+    public float getPriceAllOrders() {
+    	float price = 0;
         Iterator<Order> orderIterator = orders.iterator();
         while (orderIterator.hasNext()) {
             price += orderIterator.next().getPrice();
@@ -109,8 +109,8 @@ public class Bill extends DomainObject {
      * @return
      */
     @Transient
-    public int getPriceSubmittedOrSuccessiveStateOrders() {
-        int price = 0;
+    public float getPriceSubmittedOrSuccessiveStateOrders() {
+    	float price = 0;
         Iterator<Order> orderIterator = orders.iterator();
         while (orderIterator.hasNext()) {
             Order tmp = orderIterator.next();

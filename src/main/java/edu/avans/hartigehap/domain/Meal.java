@@ -21,7 +21,7 @@ public class Meal extends MenuItem {
 
     private String recipe;
 
-    public Meal(String id, String imageFileName, int price, String recipe) {
+    public Meal(String id, String imageFileName, float price, String recipe) {
         super(id, imageFileName, price);
         this.recipe = recipe;
     }
