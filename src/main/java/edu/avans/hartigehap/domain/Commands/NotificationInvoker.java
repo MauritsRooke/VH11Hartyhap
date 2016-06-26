@@ -4,10 +4,7 @@ package edu.avans.hartigehap.domain.Commands;
  * @author Maurits
  *
  */
-import java.util.ArrayList;
-import java.util.List;
 
-import edu.avans.hartigehap.domain.NotificationCmdClient;
 import edu.avans.hartigehap.domain.Order;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j

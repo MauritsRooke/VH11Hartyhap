@@ -46,7 +46,8 @@
 					<c:forEach items="${allPreparedOrders}" var="preparedOrder">
 						<tr>
 							<spring:url var="showOrder" value="/waiter/orders/${preparedOrder.id}" />
-							<td><a href="${showOrder}">${labelPreparedOrder} ${preparedOrder.bill.diningTable.tableNr}</a></td>
+							<c:if test="${preparedOrder.bill.diningTable.tableNr != null}"><td><a href="${showOrder}">${labelPreparedOrder} ${preparedOrder.bill.diningTable.tableNr}</a></td></c:if>
+							<c:if test="${preparedOrder.bill.diningTable.tableNr == null}"><td><a>Deliver online Order</a></td></c:if>
 							<sec:authorize access="hasRole('ROLE_EMPLOYEE')">
 								<spring:url var="servedOrderUrl" value="/waiter/orders/${preparedOrder.id}" />
 								<form:form name="servedOrderForm" action="${servedOrderUrl}" method="put">

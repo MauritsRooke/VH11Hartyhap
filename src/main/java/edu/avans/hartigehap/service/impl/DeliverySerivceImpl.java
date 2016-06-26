@@ -3,8 +3,7 @@
  * @author Maurits
  */package edu.avans.hartigehap.service.impl;
 
-import java.awt.List;
-import java.util.Collection;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

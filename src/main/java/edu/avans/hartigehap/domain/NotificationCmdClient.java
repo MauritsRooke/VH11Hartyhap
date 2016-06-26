@@ -1,10 +1,6 @@
 package edu.avans.hartigehap.domain;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import edu.avans.hartigehap.domain.Commands.Command;
 import edu.avans.hartigehap.domain.Commands.FacebookCommand;
 import edu.avans.hartigehap.domain.Commands.MailCommand;
 import edu.avans.hartigehap.domain.Commands.Notification;
