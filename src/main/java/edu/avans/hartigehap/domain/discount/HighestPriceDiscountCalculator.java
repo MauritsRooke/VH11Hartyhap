@@ -17,8 +17,8 @@ public class HighestPriceDiscountCalculator extends DefaultDiscountCalculator {
     	float highestPrice = 0;
 
         for (OrderItem item : orderList) {
-            if (item.getPrice() > highestPrice) {
-                highestPrice = item.getPrice();
+            if ((item.getPrice() / item.getQuantity())> highestPrice) {
+                highestPrice = item.getPrice() / item.getQuantity();
             }
         }
         

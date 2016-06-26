@@ -26,7 +26,7 @@ public class SubstractDiscountCalculator extends DefaultDiscountCalculator {
     public float calculatePrice(Collection<OrderItem> orderList) {
     	float price = 0;
         for (OrderItem item : orderList) {
-            price += item.getPrice() - substractAmount;
+            price += item.getPrice() - (substractAmount * item.getQuantity());
         }
         return price;
     }

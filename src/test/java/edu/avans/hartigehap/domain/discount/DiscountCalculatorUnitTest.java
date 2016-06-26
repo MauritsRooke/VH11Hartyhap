@@ -19,10 +19,13 @@ public class DiscountCalculatorUnitTest {
 
     private Collection<OrderItem> orderItems;
     private Collection<OrderItem> orderItems2;
+    private Collection<OrderItem> orderItems3;
     
     private void setUp() {
 
     	//Testset 1
+    	// 1 x 10
+    	// 1 x 30
         MenuItem m1 = new Meal();
         m1.setPrice(10);
         MenuItem m2 = new Meal();
@@ -41,6 +44,7 @@ public class DiscountCalculatorUnitTest {
         
         
         //testset 2
+        // 2 x 12 
         Meal m3 = new Meal();
         m3.setPrice(12);
         
@@ -50,8 +54,26 @@ public class DiscountCalculatorUnitTest {
         
         orderItems2 = new ArrayList<>();
         orderItems2.add(item3);
+        
+        //testset 3
+        // 3 x 15
+        // 2 x 10
+        Meal m4 = new Meal();
+        m4.setPrice(15);
+        Meal m5 = new Meal();
+        m5.setPrice(10);
+        
+        OrderItem item4 = new OrderItem();
+        item4.setMenuItem(m4);
+        item4.setQuantity(3);
+        OrderItem item5 = new OrderItem();
+        item5.setMenuItem(m5);
+        item5.setQuantity(2);
+        
+        orderItems3 = new ArrayList<>();
+        orderItems3.add(item4);
+        orderItems3.add(item5);
     }
-
 
     @Test
     public void testDefaultDiscountCalculator() {
@@ -59,9 +81,11 @@ public class DiscountCalculatorUnitTest {
         IDiscountCalculator calculator = new DefaultDiscountCalculator();
         float price = calculator.calculatePrice(orderItems);
         float price2 = calculator.calculatePrice(orderItems2);
+        float price3 = calculator.calculatePrice(orderItems3);
         
         assertEquals(40, price, 0.001);
         assertEquals(24, price2, 0.001);
+        assertEquals(65, price3, 0.001);
     }
     
     @Test
@@ -86,11 +110,15 @@ public class DiscountCalculatorUnitTest {
         float price2 = calculator.calculatePrice(orderItems2);
         float price3 = calculator2.calculatePrice(orderItems);
         float price4 = calculator2.calculatePrice(orderItems2);
+        float price5 = calculator.calculatePrice(orderItems3);
+        float price6 = calculator2.calculatePrice(orderItems3); 
         
         assertEquals(32, price, 0.001);
         assertEquals(19.2, price2, 0.001);
         assertEquals(20, price3, 0.001);
         assertEquals(12, price4, 0.001);
+        assertEquals(52, price5, 0.001);
+        assertEquals(32.5, price6, 0.001);
     }
 
     @Test
@@ -99,9 +127,11 @@ public class DiscountCalculatorUnitTest {
         IDiscountCalculator calculator = new HighestPriceDiscountCalculator();
         float price = calculator.calculatePrice(orderItems);
         float price2 = calculator.calculatePrice(orderItems2);
+        float price3 = calculator.calculatePrice(orderItems3);
         
         assertEquals(10, price, 0.001);
         assertEquals(24, price2, 0.001);
+        assertEquals(50, price3, 0.001);
     }
     
     @Test
@@ -126,11 +156,15 @@ public class DiscountCalculatorUnitTest {
         float price2 = calculator.calculatePrice(orderItems2);
         float price3 = calculator2.calculatePrice(orderItems);
         float price4 = calculator2.calculatePrice(orderItems2);
+        float price5 = calculator.calculatePrice(orderItems3);
+        float price6 = calculator2.calculatePrice(orderItems3); 
         
         assertEquals(39, price, 0.001);
-        assertEquals(23.5, price2, 0.001);
+        assertEquals(23, price2, 0.001);
         assertEquals(38, price3, 0.001);
-        assertEquals(23, price4, 0.001);
+        assertEquals(22, price4, 0.001);
+        assertEquals(62.5, price5, 0.001);
+        assertEquals(60, price6, 0.001);
     }
 
 }

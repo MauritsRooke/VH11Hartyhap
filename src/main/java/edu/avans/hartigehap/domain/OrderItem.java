@@ -53,4 +53,8 @@ public class OrderItem extends DomainObject {
     public float getPrice() {
         return menuItem.getPrice() * quantity;
     }
+    
+    public int getQuantity() {
+    	return quantity;
+    }
 }
