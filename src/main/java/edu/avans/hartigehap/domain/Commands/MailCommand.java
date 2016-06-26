@@ -20,7 +20,7 @@ public class MailCommand implements Command {
 		log.info("COMMAND EXECUTE AANGEROEPEN");
 		notify.setInfo(order.getBill().getCustomer().getEmail());
 		notify.setHeader("Bevestiging Order");
-		notify.setBody("Beste Dhr/ Mevr, "+ order.getBill().getCustomer().getLastName()+ "Hierbij bevestig ik uw order");
+		notify.setBody("Beste Dhr/ Mevr, "+ order.getBill().getCustomer().getLastName()+ " Hierbij bevestig ik uw order");
 		notify.sendMail();
 	}
 }

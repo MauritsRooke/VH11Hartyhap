@@ -8,52 +8,65 @@
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	<spring:message code="label_currency" var="labelCurrency" />
+	<spring:message code="label_header_address" var="labelHeaderAddress" />
+	<spring:message code="label_header_person" var="labelHeaderPerson" />
+	<spring:message code="label_form_address" var="labelFormAddress" />
+	<spring:message code="label_form_zip" var="labelFormZip" />
+	<spring:message code="label_form_city" var="labelFormCity" />
+	<spring:message code="label_form_fName" var="labelFormfName" />
+	<spring:message code="label_form_lName" var="labelFormlName" />
+	<spring:message code="label_form_phone" var="labelFormphone" />
+	<spring:message code="label_form_mail" var="labelFormmail" />
+	<spring:message code="label_button_submit" var="labelbuttonsubmit" />
+	<spring:message code="label_item_name" var="labelItemName" />
+	<spring:message code="label_item_price" var="labelItemPrice" />
+	<spring:message code="label_item_total" var="labelItemTotal" />
 	<spring:url var="showRestaurant" value="/restaurants/${restaurant.id}" />
 	
 	<div class="row col-lg-8 col-md-8">
-	<h1>Voer je adresgegevens in</h1>
-	<spring:url var="submitOrderUrl" value="/restaurants/{restaurantName}/delivery" />
+	<h1>${labelHeaderAddress}</h1>
+	<spring:url var="submitOrderUrl" value="/restaurants/${restaurantName}/delivery" />
 	<form:form name="submitOrderForm" action="${submitOrderUrl}" modelAttribute="customerForm" method="post">
 	
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >Adres</span>
+						<span class="input-group-addon input-group-min-width" >${labelFormAddress}</span>
 						  <form:input type="text" path="address" />
 	</div>
 
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >Postcode</span>
+						<span class="input-group-addon input-group-min-width" >${labelFormZip}</span>
 						  <form:input type="text" path="zipCode" />
 	</div>
 	
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >Stad</span>
+						<span class="input-group-addon input-group-min-width" >${labelFormCity}</span>
 						  <form:input type="text" path="city" />
 	</div>
 	
 	
-	<h2>Hoe ben je te bereiken?</h2>
+	<h2>${labelHeaderPerson}</h2>
 	
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >voorNaam</span>
+						<span class="input-group-addon input-group-min-width" >${labelFormfName}</span>
 						  <form:input type="text" path="firstName" />
 	</div>
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >achterNaam</span>
+						<span class="input-group-addon input-group-min-width" >${labelFormlName}</span>
 						  <form:input type="text" path="lastName" />
 	</div>
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >Tel</span>
+						<span class="input-group-addon input-group-min-width" >${labelFormphone}</span>
 						  <form:input type="tel" path="phone" />
 	</div>
 	
 	
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >Email</span>
+						<span class="input-group-addon input-group-min-width" >${labelFormmail}</span>
 						  <form:input type="email" path="email" />
 	</div>
 	
 	
-	<button type="submit" class="btn btn-default">Bevestig bestelling en betaal</button>
+	<button type="submit" class="btn btn-default"><b>${labelbuttonsubmit}</b></button>
 	</form:form>
 	
 	</div>
@@ -62,8 +75,8 @@
 	 <table class="table table-striped">
     <thead>
       <tr>
-        <th>Itemnaam</th>
-        <th>Itemprijs</th>
+        <th>${labelItemName }</th>
+        <th>${labelItemPrice}</th>
       </tr>
     </thead>
     <tbody> 
@@ -75,7 +88,8 @@
 	</tr>
 	</c:forEach>
 	<tr>
-	<td><b>Totaal:</b></td>
+	<td><b>${labelItemTotal }</b></td>
+	<td><b>${totalprice}</b></td>
 	<td></td>
 	</tr>
 	</c:if>    

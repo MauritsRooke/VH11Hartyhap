@@ -48,7 +48,7 @@ public class DeliveryController {
 		Order order = orderService.getOrderByOnlineID(orderID);
 		deliveryService.addCustomertoOrder(order, customer,restaurantName);
 		orderService.submitOrder(order);
-		
+		log.info(String.valueOf(order.getBill().getCustomer().getRestaurants().size()));
 		 return "redirect:/restaurants/";
 	 }
 	 public void setOrderModel(String restName,Model uiModel, String onlineOrderID){
@@ -56,6 +56,7 @@ public class DeliveryController {
 	        uiModel.addAttribute("restaurant", restaurant);
 	        Order order = orderService.getOrderByOnlineID(onlineOrderID);
 	        uiModel.addAttribute("order", order);
+	        uiModel.addAttribute("totalprice", order.getPrice());
 	        Customer customer = new Customer();
 	        uiModel.addAttribute("customerForm", customer);
 	       

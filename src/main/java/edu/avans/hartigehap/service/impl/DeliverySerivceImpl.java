@@ -29,7 +29,7 @@ public class DeliverySerivceImpl implements DeliveryService {
 	 @Autowired
 	    private RestaurantService restServ;
 	 @Autowired
-	    private CustomerRepository customerRepository;
+	  private CustomerRepository customerRepository;
 	
 	public void saveDelivery(Delivery delivery){
 		
@@ -40,7 +40,9 @@ public class DeliverySerivceImpl implements DeliveryService {
 		Restaurant rest =  restServ.findById(restaurantName);
 		order.getBill().setCustomer(customer);
 		order.getBill().getCustomer().getRestaurants().add(rest);
+		customer.getBills().add(order.getBill());
 		customerRepository.save(order.getBill().getCustomer());
+		customerRepository.save(customer);
 		log.info(String.valueOf(order.getBill().getCustomer().getRestaurants().size()));
 	}
 
