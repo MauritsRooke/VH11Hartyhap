@@ -49,13 +49,13 @@ public abstract class MenuItem extends DomainObjectNaturalId {
 
     // JPA is case sensitive: the corresponding column name will be in small
     // caps "price"
-    private int price;
+    private float price;
 
     // no cascade
     @ManyToMany
     private Collection<FoodCategory> foodCategories = new ArrayList<FoodCategory>();
 
-    public MenuItem(String id, String imageFileName, int price) {
+    public MenuItem(String id, String imageFileName, float price) {
         super(id);
         this.imageFileName = imageFileName;
         this.price = price;

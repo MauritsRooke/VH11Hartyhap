@@ -27,6 +27,8 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import edu.avans.hartigehap.domain.States.*;
+import edu.avans.hartigehap.domain.discount.DiscountCalculatorFactory;
+import edu.avans.hartigehap.domain.discount.IDiscountCalculator;
 
 /**
  * Order object Now has a State pattern to keep track of states
@@ -165,13 +167,9 @@ public class Order extends DomainObject implements Subject {
     }
 
     @Transient
-    public int getPrice() {
-        int price = 0;
-        Iterator<OrderItem> orderItemIterator = orderItems.iterator();
-        while (orderItemIterator.hasNext()) {
-            price += orderItemIterator.next().getPrice();
-        }
-        return price;
+    public float getPrice() {
+        IDiscountCalculator dc = DiscountCalculatorFactory.getInstance().createDiscount();
+    	return dc.calculatePrice(orderItems);
     }
 
 
