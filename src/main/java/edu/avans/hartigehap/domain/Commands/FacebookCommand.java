@@ -1,4 +1,7 @@
 package edu.avans.hartigehap.domain.Commands;
+
+import edu.avans.hartigehap.domain.Order;
+
 /**
  * Facebook command, Doesnt have a implementation
  * Just to show that command pattern works
@@ -12,7 +15,7 @@ public class FacebookCommand implements Command {
 		this.notify = notify;
 	}
 	
-	public void execute(){
+	public void execute(Order order){
 
 		notify.setBody("FACEBOOK BODY VERZONDEN");
 

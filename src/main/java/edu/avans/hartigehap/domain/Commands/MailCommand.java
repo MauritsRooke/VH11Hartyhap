@@ -1,5 +1,6 @@
 package edu.avans.hartigehap.domain.Commands;
 
+import edu.avans.hartigehap.domain.Order;
 /**
  * Mailcommand sends data to the notification class to send an email
  * @author Maurits
@@ -15,11 +16,11 @@ public class MailCommand implements Command {
 		this.notify = notify;
 	}
 	
-	public void execute(){
+	public void execute(Order order){
 		log.info("COMMAND EXECUTE AANGEROEPEN");
-		notify.setInfo("mauritsrooke@gmail.com");
-		notify.setHeader("Cooleheader");
-		notify.setBody("MAIL BODY VERZONDEN");
+		notify.setInfo(order.getBill().getCustomer().getEmail());
+		notify.setHeader("Bevestiging Order");
+		notify.setBody("Beste Dhr/ Mevr, "+ order.getBill().getCustomer().getLastName()+ "Hierbij bevestig ik uw order");
 		notify.sendMail();
 	}
 }

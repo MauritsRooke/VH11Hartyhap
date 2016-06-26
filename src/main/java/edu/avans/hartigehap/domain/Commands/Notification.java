@@ -38,7 +38,7 @@ public class Notification {
 		//Standard mailing functionality
 		mail = new Gmail();
 		mail.setUpMail(messageInfo, header, body);
-		//mail.sendEmail();
+		mail.sendEmail();
 	}
 	
 	public void sendText(){

@@ -1,4 +1,5 @@
 package edu.avans.hartigehap.domain.Commands;
+import edu.avans.hartigehap.domain.Order;
 /**
  * Sms command to show the command pattern works
  * Doesnt have a real implementation
@@ -15,11 +16,11 @@ public class SmsCommand implements Command {
 	}
 
 	@Override
-	public void execute(){
+	public void execute(Order order){
 		log.info("COMMAND EXECUTE AANGEROEPEN");
-		
-		notify.setBody("SMS BODY NEERGEZET");
-		
+		notify.setInfo(order.getBill().getCustomer().getPhone());
+		notify.setBody("SMS BODY");
+		notify.sendText();
 	}
 
 }

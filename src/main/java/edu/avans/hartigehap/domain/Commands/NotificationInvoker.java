@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.avans.hartigehap.domain.NotificationCmdClient;
+import edu.avans.hartigehap.domain.Order;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NotificationInvoker {
-	Command mailCommands;
+	Command command;
 
 	
 	
@@ -21,18 +22,17 @@ public class NotificationInvoker {
 	}
 	
 	public void setCommand(Command cmd){
-		mailCommands = cmd;
+		command = cmd;
 	}
 	
-	public void emailNotification(){
-		log.info("sINVOKER EMAILNOTIFICATION AANGEROEPEN");
-		mailCommands.execute();
+	public void emailNotification(Order order){
+		command.execute(order);
 	}
-	public void smsNotification(){
-		
+	public void smsNotification(Order order){
+		command.execute(order);
 	}
-	public void fbNotification(){
-	
+	public void fbNotification(Order order){
+		command.execute(order);
 }
 
 }

@@ -167,22 +167,13 @@ public class OrderServiceImpl implements OrderService {
     	Bill bill = new Bill();
     	Order order = bill.getCurrentOrder();
     	Restaurant rest =  restServ.findById(restaurantName);
-    	Customer anon = newCustomer(rest);
-    	bill.setCustomer(anon);
     	order.setOnlineID(onlineOrderID);
     	orderRepository.save(order);
     	billRepository.save(bill);
     	return order;
     }
     
-    public Customer newCustomer(Restaurant rest){
-    	Customer anon = new Customer();
-    	anon.setFirstName("Anon");
-    	anon.setLastName("ymous");
-    	anon.getRestaurants().add(rest);
-    	customerRepository.save(anon);
-    	return anon;
-    }
+
     
     public void deleteOrderItem(String onlineOrderID, String menuItemName) {
         MenuItem menuItem = menuItemRepository.findOne(menuItemName);

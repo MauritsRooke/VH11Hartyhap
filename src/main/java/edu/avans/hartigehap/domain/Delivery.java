@@ -2,7 +2,8 @@ package edu.avans.hartigehap.domain;
 
 
 /**
- * Delivery domain object
+ * Delivery domain object wordt niet meer gebruikt
+ * 
  * @author Maurits
  *
  */

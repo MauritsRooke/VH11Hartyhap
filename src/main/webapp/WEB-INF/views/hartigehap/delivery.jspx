@@ -13,16 +13,13 @@
 	<div class="row col-lg-8 col-md-8">
 	<h1>Voer je adresgegevens in</h1>
 	<spring:url var="submitOrderUrl" value="/restaurants/{restaurantName}/delivery" />
-	<form:form name="submitOrderForm" action="${submitOrderUrl}" modelAttribute="deliveryForm" method="post">
+	<form:form name="submitOrderForm" action="${submitOrderUrl}" modelAttribute="customerForm" method="post">
 	
 	<div class="input-group input-group-100">
 						<span class="input-group-addon input-group-min-width" >Adres</span>
-						  <form:input type="text" path="street" />
+						  <form:input type="text" path="address" />
 	</div>
-	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >huisnummer</span>
-						  <form:input type="number" path="houseNmbr" />
-	</div>
+
 	<div class="input-group input-group-100">
 						<span class="input-group-addon input-group-min-width" >Postcode</span>
 						  <form:input type="text" path="zipCode" />
@@ -30,19 +27,23 @@
 	
 	<div class="input-group input-group-100">
 						<span class="input-group-addon input-group-min-width" >Stad</span>
-						  <form:input type="text" path="City" />
+						  <form:input type="text" path="city" />
 	</div>
 	
 	
 	<h2>Hoe ben je te bereiken?</h2>
 	
 	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >Naam</span>
-						  <form:input type="text" path="name" />
+						<span class="input-group-addon input-group-min-width" >voorNaam</span>
+						  <form:input type="text" path="firstName" />
+	</div>
+	<div class="input-group input-group-100">
+						<span class="input-group-addon input-group-min-width" >achterNaam</span>
+						  <form:input type="text" path="lastName" />
 	</div>
 	<div class="input-group input-group-100">
 						<span class="input-group-addon input-group-min-width" >Tel</span>
-						  <form:input type="tel" path="phoneNmbr" />
+						  <form:input type="tel" path="phone" />
 	</div>
 	
 	
@@ -51,15 +52,6 @@
 						  <form:input type="email" path="email" />
 	</div>
 	
-	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >Gewenste Bezorgtijd</span>
-						  <form:input type="text" path="deliveryTime" />
-	</div>
-	
-	<div class="input-group input-group-100">
-						<span class="input-group-addon input-group-min-width" >opmerkingen voor restaurant?</span>
-						  <form:textarea type="text" path="comments" />
-	</div>
 	
 	<button type="submit" class="btn btn-default">Bevestig bestelling en betaal</button>
 	</form:form>

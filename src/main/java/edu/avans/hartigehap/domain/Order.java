@@ -139,7 +139,6 @@ public class Order extends DomainObject implements Subject {
             throw new StateException("not allowed to submit an empty order");
         }
         myState.submit();
-        log.info("asfagfsafasfasdfasdasdada" + myState.getStatusType());
         if(OnlineID != null){
           notifyObservers();
         }
@@ -196,7 +195,7 @@ public class Order extends DomainObject implements Subject {
 	public void notifyObservers() {
 		for (int i = 0; i < observers.size(); i++) {
 			OrderStateObserver observer = (OrderStateObserver)observers.get(i);
-			observer.update(this.myState.getStatusType());
+			observer.update(this);
 			}
 		
 	}

@@ -68,6 +68,11 @@ public class Customer extends DomainObject {
     @Column(name = "PHOTO")
     private byte[] photo;
 
+    private String address;
+    private String city;
+    private String email;
+    private String phone;
+    private String zipCode;
     // no cascading
     @ManyToMany
     private Collection<Restaurant> restaurants = new ArrayList<Restaurant>();

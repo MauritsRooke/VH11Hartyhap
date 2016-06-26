@@ -32,37 +32,37 @@ public class NotificationCmdClient implements OrderStateObserver{
 	}
 
 	@Override
-	public void update(String orderState) {
+	public void update(Order order) {
 		// TODO Auto-generated method stub
-		log.info("UPDATE METHODE AANGEROEPEN"+ orderState);
-		switch (orderState){
+		log.info("UPDATE METHODE AANGEROEPEN"+ order.getMyState().getStatusType());
+		switch (order.getMyState().getStatusType()){
 		case "submitted":
-			setupMailCommands();
+			setupMailCommands(order);
 			break;	
 		case "prepared":
-			setupSmsCommands();
+			setupSmsCommands(order);
 		break;
 		default:
-			setupFbCommands();
+			setupFbCommands(order);
 		}
 	}
 	
-	public void setupMailCommands(){
+	public void setupMailCommands(Order order){
 		log.info("CLIENT  setupMAIL COMMANDS AANGEREOEPEN");
 		invoker.setCommand(mailCMD);
-		invoker.emailNotification();
+		invoker.emailNotification(order);
 	}
 	
-	public void setupSmsCommands(){
+	public void setupSmsCommands(Order order){
 		log.info("CLIENT  setupSMS COMMANDS AANGEREOEPEN");
 		invoker.setCommand(smsCMD);
-		invoker.emailNotification();
+		invoker.smsNotification(order);
 	}
 	
-	public void setupFbCommands(){
+	public void setupFbCommands(Order order){
 		log.info("CLIENT  setupFB COMMANDS AANGEREOEPEN");
 		invoker.setCommand(fbCMD);
-		invoker.emailNotification();
+		invoker.fbNotification(order);
 	}
 	
 	

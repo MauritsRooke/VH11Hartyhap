@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.avans.hartigehap.domain.Customer;
 import edu.avans.hartigehap.domain.Delivery;
 import edu.avans.hartigehap.domain.Order;
 import edu.avans.hartigehap.domain.Restaurant;
@@ -42,11 +43,12 @@ public class DeliveryController {
     }
 	 
 	 @RequestMapping(value = { "/restaurants/{restaurantName}/delivery" }, method = RequestMethod.POST)
-	 public String setDelivery(@PathVariable("restaurantName") String restaurantName, Model uimodel,@ModelAttribute("deliveryForm") Delivery delivery,@CookieValue("HartigeHapOrderID") String orderID) throws StateException {
+	 public String setDelivery(@PathVariable("restaurantName") String restaurantName, Model uimodel,@ModelAttribute("customerForm") Customer customer,@CookieValue("HartigeHapOrderID") String orderID) throws StateException {
 		 
 		Order order = orderService.getOrderByOnlineID(orderID);
+		deliveryService.addCustomertoOrder(order, customer,restaurantName);
 		orderService.submitOrder(order);
-		 deliveryService.saveDelivery(delivery);
+		
 		 return "redirect:/restaurants/";
 	 }
 	 public void setOrderModel(String restName,Model uiModel, String onlineOrderID){
@@ -54,8 +56,8 @@ public class DeliveryController {
 	        uiModel.addAttribute("restaurant", restaurant);
 	        Order order = orderService.getOrderByOnlineID(onlineOrderID);
 	        uiModel.addAttribute("order", order);
-	        Delivery delivery=new Delivery();
-	        uiModel.addAttribute("deliveryForm", delivery);
+	        Customer customer = new Customer();
+	        uiModel.addAttribute("customerForm", customer);
 	       
 	    }
 
